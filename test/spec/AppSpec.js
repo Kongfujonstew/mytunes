@@ -21,7 +21,7 @@ describe('App', function() {
     expect(app.get('songQueue')).to.be.an.instanceof(SongQueue);
   });
 
-  xit('sets the current song when a "play" event is fired', function() {
+  it('sets the current song when a "play" event is fired', function() {
     expect(app.get('currentSong')).to.be.an('object');
     app.get('library').at(0).play();
     expect(app.get('currentSong')).to.equal(app.get('library').at(0));

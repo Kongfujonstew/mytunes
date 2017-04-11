@@ -9,7 +9,12 @@ var PlayerView = Backbone.View.extend({
   initialize: function() {
     this.$el.on('ended', () => {
       this.model.ended();
-    }
+    });
+
+    //add enque lister?
+    // this.on('enqueue', () => {
+      
+    // })
   },
 
   setSong: function(song) {

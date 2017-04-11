@@ -18,6 +18,7 @@ var SongQueueEntryView = Backbone.View.extend({
     'click button': 'handleClick'
   },
 
+
    render: function() {
     this.$el.html(this.template(this.model.attributes));
     return this.$el;
