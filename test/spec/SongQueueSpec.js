@@ -22,7 +22,6 @@ describe('SongQueue', function() {
   describe('when a song is added', function() {
     it('plays it if it is the only song in the song queue', function() {
       var songQueue = new SongQueue();
-      console.log(songQueue)
       songQueue.add(songData1);
       expect(playSpy).to.have.been.called;
     });

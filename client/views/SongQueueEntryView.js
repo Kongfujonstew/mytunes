@@ -2,20 +2,25 @@
 var SongQueueEntryView = Backbone.View.extend({
   
 //note to selves this is bs code from libentryview!!!!!
-
-
   tagName: 'tr',
+  
+  template: _.template('<div class="song"> \
+                          </div> \
+                          <span class="title"><%- title %></span> \
+                          <span class="name">(<%- name %>)</span> \
+                        </div>'),
 
-  template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
-
-  events: {
-    'click': function() {
-      this.model.play();
-    }
+  initialize: function() {
+    this.on('change', this.render());
   },
 
-  render: function() {
-    return this.$el.html(this.template(this.model.attributes));
+  events: {
+    'click button': 'handleClick'
+  },
+
+   render: function() {
+    this.$el.html(this.template(this.model.attributes));
+    return this.$el;
   }
 
 
