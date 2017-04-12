@@ -1,4 +1,5 @@
 // SongQueue.js - Defines a backbone model class for the song queue.
+//f
 var SongQueue = Backbone.Collection.extend({
 
   model: SongModel,
@@ -9,19 +10,19 @@ var SongQueue = Backbone.Collection.extend({
       if (this.length === 1) {
         this.playFirst();
       }
-    });
+    }, this);
 
     this.on('ended', function() {
-      this.dequeue();
-    })
+      this.playNext();
+    }, this)
 
     this.on('dequeue', function() {
       this.dequeue();
-    });
+    }, this);
 
     this.on('enqueue', function() {
       console.log('enqueue fired');
-    })
+    }, this)
 
   },
 
@@ -32,7 +33,12 @@ var SongQueue = Backbone.Collection.extend({
   },
 
   playNext: function() {
-
+    this.shift();
+    if (this.length >= 1) {
+      this.playFirst();
+    } else {
+      this.trigger('stop');
+    }
   },
 
   dequeue: function () {
@@ -46,11 +52,5 @@ var SongQueue = Backbone.Collection.extend({
     this.add(song);
     playFirst();
   }
-
-
-
-  // remove: function() {
-  //   console.log('other remove called')
-  // }
 
 });
